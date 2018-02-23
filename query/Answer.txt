@@ -1,0 +1,23 @@
+/*
+1.
+SELECT DISTINCT title, point, level, Players.name, age, gender
+FROM Cards
+LEFT JOIN Players
+	On Cards.playerid = Players.id
+LEFT JOIN Status
+	On Cards.playerid = Status.playerid
+ORDER BY level DESC;
+
+
+2.
+SELECT COUNT(*) AS totalcard, Players.id As playerId, Players.name, age, gender
+FROM Cards
+LEFT JOIN Players
+	On Cards.playerid = Players.id
+WHERE gender = 'Male'
+GROUP BY Players.name
+ORDER BY totalcard DESC, Players.id
+LIMIT 3;
+
+
+*/
