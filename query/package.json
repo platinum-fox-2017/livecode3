@@ -10,6 +10,7 @@
   "author": "Erwin W Ramadhan <erwinwahyuramadhan@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "cli-table": "^0.3.1",
     "sqlite3": "^3.1.13"
   }
 }
