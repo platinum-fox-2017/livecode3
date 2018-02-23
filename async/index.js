@@ -25,7 +25,7 @@ class RNG {
             clearInterval(counter)
           } else {
             let a = RNG.roll()
-            console.log(`dapet kocokan ${a}`);
+            // console.log(`dapet kocokan ${a}`);
             if(a > best) {
               best = a
             }
@@ -40,11 +40,11 @@ class RNG {
           let best = 0
           let count = setInterval(() => {
             if (times < 0) {
-              resolve(best);
+              resolve(viewGachaResult(best));
               clearInterval(count);
             }  else {
               let a = RNG.roll()
-              console.log(`dapet kocokan ${a}`);
+              // console.log(`dapet kocokan ${a}`);
               if(a > best) {
                 best = a
               }
@@ -86,5 +86,16 @@ RNG.gatchaRollPromise(0)
 
 
 // RELEASE 2 PROMISE(S)
+let arr = []
+for(let i = 0;i<10;i++){
+  arr.push(RNG.gatchaRollPromise(5))
+}
 
+Promise.all(arr)
+.then(function(data){
+  data
+})
+.catch(function(err){
+  console.log(err);
+})
 // code here...

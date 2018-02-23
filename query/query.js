@@ -14,12 +14,15 @@ function sortPlayer(){
     })
 }
 
+
+
 // sortPlayer()
 function cardCount(){
     db.all(` SELECT COUNT(Cards.PlayerId) As totalcard,
                     Cards.playerId, Players.name,Players.age,Players.gender
              FROM Cards
              LEFT JOIN Players ON Players.id = Cards.playerId
+             WHERE Players.gender = 'Male'
              GROUP BY Cards.playerId
              ORDER by totalcard DESC
              LIMIT 3
