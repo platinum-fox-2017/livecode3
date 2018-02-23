@@ -3,7 +3,7 @@
 
 - tampilkan status title, point, level, player name, age, dan gender, urutkan berdasarkan level dari yang terbesar ke yang terkecil
 
-SELECT title, point, level, name, age FROM Players JOIN Status
+SELECT title, point, level, name, age, gender FROM Players JOIN Status
 ON Status.playerId = Players.id
 ORDER BY level DESC;
 
