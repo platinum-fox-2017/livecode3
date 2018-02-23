@@ -1,0 +1,3 @@
+SELECT title, point, level, name, age, gender 
+FROM Status LEFT JOIN Players 
+ON Status.id = Players.id ORDER BY level DESC;
