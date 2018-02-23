@@ -1,0 +1,5 @@
+RELEASE 0
+select title,point,level,name,age,gender from Status inner join Players ON Status.playerId=Players.id order by level DESC
+
+RELEASE 1
+SELECT totalcard,name,age,gender from (select count(*)as totalcard,playerid,name,age,gender from Cards )LEFT JOIN Players ON Cards.playerId=Players.id GROUP BY totalcard GROUP BY Players.id order by totalcard desc limit 3
