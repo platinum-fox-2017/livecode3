@@ -85,7 +85,7 @@ RNG.gatchaRollPromise(5)
 
 RNG.gatchaRollPromise(0)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() });
+  .catch(function(err) { });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
@@ -93,3 +93,14 @@ RNG.gatchaRollPromise(0)
 // RELEASE 2 PROMISE(S)
 
 // code here...
+let bunchOfPromise = [];
+for (var i = 1; i <= 10; i++) {
+  bunchOfPromise.push(RNG.gatchaRollPromise(i));
+}
+Promise.all(bunchOfPromise).then((values) => {
+  for (var i = 0; i < values.length; i++) {
+    viewGachaResult(values[i]);
+  }
+}).catch((err) => {
+  viewGachaFailure();
+})
