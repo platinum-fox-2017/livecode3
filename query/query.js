@@ -6,7 +6,7 @@ db.all(`select title, point, level, Players.name, Players.age,Players.gender fro
                 console.log(data);
         })
 
-db.all(`select count (*) as totalcard, Players.id, Players.name, Players.name, Players.age, Players.gender From Cards left join Players on Cards.playerId = Players.id where Players.gender ='Male' group by Players.name order by totalcard desc limit 3`,
+db.all(`select count (*) as totalcard, Players.id, Players.name, Players.name, Players.age, Players.gender From Cards left join Players on Cards.playerId = Players.id where Players.gender ='Male' group by Players.name order by totalcard desc, Players.id asc limit 3`,
         function (err, data) {
                 console.log(data);
         })
