@@ -17,6 +17,46 @@ class RNG {
 
     return result;
   }
+
+  static gatchaRoll(angka,input){
+    var arr=[]
+    for(let i=0;i<angka;i++){
+      var rollAngka=RNG.roll()
+        console.log(rollAngka);
+        arr.push(rollAngka)
+    }
+
+    if(angka===0){
+      setTimeout(function(){
+        viewGachaResult(0)
+      }, 1000);
+    }
+    else{
+      setTimeout(function(){
+        viewGachaResult(Math.max(...arr))
+      }, 1000);
+
+    }
+
+  }
+  static gatchaRollPromise(angka){
+    var arrProm=[]
+    return new Promise(function(resolve, reject) {
+      for(let i=0;i<angka;i++){
+        var rollAngkaProm=RNG.roll()
+          arrProm.push(rollAngkaProm)
+      }
+      setTimeout(function(){
+        if(angka===0){
+          reject(angka)
+        }
+        else{
+          resolve(Math.max(...arrProm))
+        }
+      }, 1000);
+
+    });
+  }
 }
 
 function viewGachaResult(best) {
@@ -27,25 +67,59 @@ function viewGachaFailure() {
   console.log('YAKIN NGGAK MAU NGE-ROLL?');
 }
 
+
 // RELEASE 0 TEST CASES
 RNG.gatchaRoll(5, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
 RNG.gatchaRoll(1, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
 RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
-
-// RELEASE 1 TEST CASES
+//
+// // RELEASE 1 TEST CASES
 RNG.gatchaRollPromise(5)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
-
-// akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
-
+  .catch(function(err) { viewGachaFailure() });
+//
+//
+// // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
+// //
 RNG.gatchaRollPromise(0)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+  .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
 
 // RELEASE 2 PROMISE(S)
 
-// code here...
+RNG.gatchaRollPromise(5).then(function(result) {
+    RNG.gatchaRollPromise(5).then(function(result) {
+      RNG.gatchaRollPromise(5).then(function(result) {
+        RNG.gatchaRollPromise(5).then(function(result) {
+          RNG.gatchaRollPromise(5).then(function(result) {
+            RNG.gatchaRollPromise(5).then(function(result) {
+              RNG.gatchaRollPromise(5).then(function(result) {
+                RNG.gatchaRollPromise(5).then(function(result) {
+                  RNG.gatchaRollPromise(5).then(function(result) {
+                    RNG.gatchaRollPromise(5).then(function(result) {
+                      RNG.gatchaRollPromise(5).then(function(result) {
+                          viewGachaResult(result) })
+                        .catch(function(err) { viewGachaFailure() });
+                        viewGachaResult(result) })
+                      .catch(function(err) { viewGachaFailure() });
+                      viewGachaResult(result) })
+                    .catch(function(err) { viewGachaFailure() });
+                    viewGachaResult(result) })
+                  .catch(function(err) { viewGachaFailure() });
+                  viewGachaResult(result) })
+                .catch(function(err) { viewGachaFailure() });
+                viewGachaResult(result) })
+              .catch(function(err) { viewGachaFailure() });
+              viewGachaResult(result) })
+            .catch(function(err) { viewGachaFailure() });
+            viewGachaResult(result) })
+          .catch(function(err) { viewGachaFailure() });
+          viewGachaResult(result) })
+        .catch(function(err) { viewGachaFailure() });
+        viewGachaResult(result) })
+      .catch(function(err) { viewGachaFailure() });
+      viewGachaResult(result) })
+  .catch(function(err) { viewGachaFailure() });
