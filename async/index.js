@@ -28,9 +28,22 @@ class RNG {
       hasil = RNG.roll()
     }
     setTimeout(function () {
-      // jalankan sesuatu disini setelah 1 detik
       viewGachaResult(hasil)
     }, 1000)
+  }
+
+  static gatchaRollPromise(times) {
+    let hasil = 0
+    return new Promise((resolve, reject) => {
+      for (let index = 0; index < times; index++) {
+        hasil = RNG.roll()
+      }
+      if (hasil > 0) {
+        resolve(hasil)
+      } else {
+        reject(hasil)
+      }
+    })
   }
 }
 
@@ -45,13 +58,13 @@ function viewGachaFailure() {
 // RELEASE 0 TEST CASES
 // console.log(RNG.gatchaRoll(5))
 RNG.gatchaRoll(5, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
-// RNG.gatchaRoll(1, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
-// RNG.gatchaRoll(0, function (result) { viewGachaResult(result) }); // output: 0
+RNG.gatchaRoll(1, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
+RNG.gatchaRoll(0, function (result) { viewGachaResult(result) }); // output: 0
 
 // // RELEASE 1 TEST CASES
-// RNG.gatchaRollPromise(5)
-//   .then(function (result) { viewGachaResult(result) })
-//   .catch(function (err) { viewGachaFailure() };
+RNG.gatchaRollPromise(5)
+  .then(function (result) { viewGachaResult(result) })
+  .catch(function (err) { viewGachaFailure() });
 
 // // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
