@@ -1,5 +1,5 @@
-const sqlite3 = require('sqlite3')
-const CliTable = require('cli-table')
+const sqlite3 = require('sqlite3');
+const CliTable = require('cli-table');
 
 function release0() {
   let db = new sqlite3.Database('./database.db', function(err){
