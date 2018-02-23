@@ -8,7 +8,7 @@ db.serialize(function(){
         console.log(rows);
     });
 
-    db.all("SELECT (SELECT COUNT(*) FROM Cards WHERE playerId = Players.id) AS totalcard,id AS playerId,name,age,gender FROM Players WHERE gender = 'Male' ORDER BY totalcard DESC LIMIT 3;",(err,rows) =>{
+    db.all("SELECT COUNT(*) as totalcard,Players.id as playerId, Players.name, Players.age, Players.gender FROM Players JOIN Cards ON Players.id = Cards.playerId WHERE Players.gender = 'Male' GROUP BY Players.id ORDER BY totalcard DESC LIMIT 3",(err,rows) =>{
         console.log("\nRelease 2: \n");
 
         console.log(rows);
