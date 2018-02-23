@@ -1,0 +1,19 @@
+
+## Release 0
+
+- tampilkan status title, point, level, player name, age, dan gender, urutkan berdasarkan level dari yang terbesar ke yang terkecil
+
+SELECT title, point, level, name, age, gender FROM Players JOIN Status
+ON Status.playerId = Players.id
+ORDER BY level DESC;
+
+## Release 1
+
+- tampilkan `player` yang memiliki `jumlah kartu`, dan berjenis kelamin `male` serta tampilkan 3 teratas dari yang paling banyak jumlah kartunya.
+
+SELECT COUNT(*) AS totalcard, Players.id, Players.name, age, gender FROM Players JOIN Cards
+ON Players.id = Cards.playerId
+WHERE Players.gender = 'Male'
+GROUP BY Players.name
+ORDER BY totalcard DESC, Players.id
+LIMIT 3;
