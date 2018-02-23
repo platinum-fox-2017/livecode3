@@ -1,0 +1,14 @@
+RELEASE 0
+
+SELECT status.title, status.point, status.level, players.name,players.age, players.gender
+FROM status JOIN players ON status.playerId = players.id
+ORDER BY status.level DESC
+
+RELEASE 1
+
+SELECT COUNT(*) as totalcard,
+Players.id as playerId, Players.name, Players.age, Players.gender 
+FROM Players JOIN Cards ON Players.id = Cards.playerId
+WHERE Players.gender = 'Male' 
+GROUP BY Players.id
+ORDER BY totalcard DESC LIMIT 3
