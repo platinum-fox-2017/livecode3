@@ -1,0 +1,4 @@
+SELECT title,point,level,name,age FROM Players INNER JOIN Status ON Players.id = Status.playerId ORDER BY level DESC;
+
+
+SELECT (SELECT COUNT(*) FROM Cards WHERE playerId = Players.id) AS totalcard,id AS playerId,name,age,gender FROM Players WHERE gender = 'Male' ORDER BY totalcard DESC LIMIT 3;
