@@ -17,6 +17,46 @@ class RNG {
 
     return result;
   }
+  static gatchaRoll(times,callback){
+    let max = []
+    if(times > 0){
+      for(let i = 0 ; i < times ; i++){
+        let gacha = RNG.roll()
+        max.push(gacha)
+        console.log(`go gacha: ${gacha}`)
+      }
+      max.sort(function(a,b){return b > a})
+        setTimeout(function(){
+        callback(max[0])
+      },1000)
+    }else{
+      setTimeout(function(){
+        callback(0)
+      },1000)
+    }
+  }
+
+  static gatchaRollPromise(times,callback){
+    return new Promise((resolve,reject)=>{
+      if(times > 0 ){
+        let max = []
+        for(let i = 0 ; i < times ; i++){
+          let gacha = RNG.roll()
+          max.push(gacha)
+          console.log(`gacha promise: ${gacha}`)
+        }
+        max.sort(function(a,b){return b > a})
+        setTimeout(function(){
+          resolve(max[0])
+        },1000)
+      }else{
+        reject()
+      }
+    })
+  }
+
+
+
 }
 
 function viewGachaResult(best) {
@@ -27,25 +67,30 @@ function viewGachaFailure() {
   console.log('YAKIN NGGAK MAU NGE-ROLL?');
 }
 
+
 // RELEASE 0 TEST CASES
-RNG.gatchaRoll(5, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
-RNG.gatchaRoll(1, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
-RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
+// RNG.gatchaRoll(5, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
+// RNG.gatchaRoll(1, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
+// RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
 
 // RELEASE 1 TEST CASES
-RNG.gatchaRollPromise(5)
-  .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+// RNG.gatchaRollPromise(5)
+//   .then(function(result) { viewGachaResult(result) })
+//   .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
-RNG.gatchaRollPromise(0)
-  .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+// RNG.gatchaRollPromise(0)
+//   .then(function(result) { viewGachaResult(result) })
+//   .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
 
 // RELEASE 2 PROMISE(S)
-
-// code here...
+  RNG.gatchaRollPromise(5).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(4).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(3).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(2).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(1).then(result => viewGachaResult(result))
+  .catch(function(err) { viewGachaFailure() });
