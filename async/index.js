@@ -17,6 +17,11 @@ class RNG {
 
     return result;
   }
+  
+  static gatchaRoll(times, callback){
+
+  }
+
 }
 
 function viewGachaResult(best) {
