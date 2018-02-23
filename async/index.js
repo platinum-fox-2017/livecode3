@@ -1,4 +1,5 @@
 class RNG {
+
   static roll() {
     const tiers = [1, 2, 3, 4, 5];
     let num = Math.floor(Math.random() * 100) + 1;
@@ -17,6 +18,26 @@ class RNG {
 
     return result;
   }
+
+  static gatchaRoll(times,callback){
+    let bunchOfNum = [];
+    let greatestNum;
+    if (times > 0) {
+      for (var i = 0; i < times; i++) {
+        let num = RNG.roll();
+        bunchOfNum.push(num);
+      }
+      bunchOfNum.sort((a,b) => {
+        return b-a;
+      });
+      greatestNum = bunchOfNum[0];
+    } else {
+      greatestNum = 0;
+    }
+    setTimeout(() => {
+      callback(greatestNum);
+    },1000);
+  }
 }
 
 function viewGachaResult(best) {
@@ -33,15 +54,15 @@ RNG.gatchaRoll(1, function(result) { viewGachaResult(result) }); // output log s
 RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
 
 // RELEASE 1 TEST CASES
-RNG.gatchaRollPromise(5)
-  .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+// RNG.gatchaRollPromise(5)
+//   .then(function(result) { viewGachaResult(result) })
+//   .catch(function(err) { viewGachaFailure() };
 
 // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
-RNG.gatchaRollPromise(0)
-  .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+// RNG.gatchaRollPromise(0)
+//   .then(function(result) { viewGachaResult(result) })
+//   .catch(function(err) { viewGachaFailure() };
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
