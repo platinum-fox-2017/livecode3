@@ -56,25 +56,39 @@ function viewGachaFailure() {
 }
 
 // RELEASE 0 TEST CASES
-// console.log(RNG.gatchaRoll(5))
+console.log(RNG.gatchaRoll(5))
 RNG.gatchaRoll(5, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
 RNG.gatchaRoll(1, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
 RNG.gatchaRoll(0, function (result) { viewGachaResult(result) }); // output: 0
 
-// // RELEASE 1 TEST CASES
+// // // RELEASE 1 TEST CASES
 RNG.gatchaRollPromise(5)
   .then(function (result) { viewGachaResult(result) })
   .catch(function (err) { viewGachaFailure() });
 
-// // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
+// // // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
-// RNG.gatchaRollPromise(0)
-//   .then(function (result) { viewGachaResult(result) })
-//   .catch(function (err) { viewGachaFailure() };
+RNG.gatchaRollPromise(0)
+  .then(function (result) { viewGachaResult(result) })
+  .catch(function (err) { viewGachaFailure() });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
 
 // RELEASE 2 PROMISE(S)
+let promise1 = RNG.gatchaRollPromise(1)
+let promise2 = RNG.gatchaRollPromise(2)
+let promise3 = RNG.gatchaRollPromise(3)
+let promise4 = RNG.gatchaRollPromise(4)
+let promise5 = RNG.gatchaRollPromise(5)
+let promise6 = RNG.gatchaRollPromise(6)
+let promise7 = RNG.gatchaRollPromise(9)
+let promise8 = RNG.gatchaRollPromise(8)
+let promise9 = RNG.gatchaRollPromise(9)
+let promise10 = RNG.gatchaRollPromise(20)
 
-// code here...
+Promise.all([promise1, promise2, promise3, promise4, promise5, promise6, promise7, promise8, promise9, promise10]).then((values) => {
+  viewGachaResult(values)
+}).catch((zero) => {
+  viewGachaFailure(zero)
+});
