@@ -1,0 +1,19 @@
+
+// RELEASE 0
+
+SELECT title,point,level,name,age,gender FROM Status
+JOIN Players ON Status.playerId = Players.id
+ORDER BY level DESC;
+
+
+// RELEASE 1
+
+first need to change id & name from table cards into cardsId and cardsName
+second need to change id & name from table players into playersId and playersName
+
+SELECT COUNT(*)AS totalcard,playersId,playersName AS name,age,gender FROM Cards
+JOIN Players ON Cards.playerId = Players.playersId
+GROUP BY playersId
+HAVING gender = 'Male'
+ORDER BY totalcard DESC
+LIMIT 3;
