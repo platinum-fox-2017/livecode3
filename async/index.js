@@ -36,39 +36,25 @@ class RNG {
   }
 
   static gatchaRollPromise(times){
-    return New Promise({
-        new Promise((resolve, reject) => {
-          const now = Date.now();
-          const then = now + seconds * 1000;
+      return  new Promise((resolve, reject) => {
+          let best = 0
           let count = setInterval(() => {
-            var secondsLeft = Math.ceil(((then - Date.now()) / 1000)+1);
-            let minutes = Math.floor(secondsLeft/60)
-            let detik = secondsLeft%60
-            if (secondsLeft < 0) {
-              resolve('SIYAAAP');
+            if (times < 0) {
+              resolve(best);
               clearInterval(count);
-              displayCountdown('BOOM')
-            } else if(minutes < 10 && detik <10){
-              displayCountdown('0'+minutes+':0'+detik)
-              secondsLeft -= 1
-            } else if (minutes < 10){
-              displayCountdown('0'+minutes+':'+detik)
-              secondsLeft -= 1
-            } else if (detik <10){
-              displayCountdown(minutes+':0'+detik)
-              secondsLeft -= 1
-            } else {
-              displayCountdown(minutes+':'+detik)
-              secondsLeft -= 1
+            }  else {
+              let a = RNG.roll()
+              console.log(`dapet kocokan ${a}`);
+              if(a > best) {
+                best = a
+              }
+              times -= 1
             }
           }, 1000);
-        });
-
-    })
-  }
-
-  }
+        })
+    }
 }
+
 
 
 
@@ -92,9 +78,9 @@ RNG.gatchaRoll(5, function(result) { viewGachaResult(result) }); // output log s
 
 // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
-// RNG.gatchaRollPromise(0)
-//   .then(function(result) { viewGachaResult(result) })
-//   .catch(function(err) { viewGachaFailure() };
+RNG.gatchaRollPromise(0)
+  .then(function(result) { viewGachaResult(result) })
+  .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
