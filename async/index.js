@@ -88,6 +88,9 @@ function viewGachaFailure() {
 
 
 // RELEASE 2 PROMISE(S)
-RNG.gatchaRollPromise(5)
-  .then(function(result) { viewGachaResult(result) })
+  RNG.gatchaRollPromise(5).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(4).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(3).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(2).then(result => viewGachaResult(result))
+  RNG.gatchaRollPromise(1).then(result => viewGachaResult(result))
   .catch(function(err) { viewGachaFailure() });
