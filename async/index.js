@@ -89,32 +89,32 @@ function viewGachaFailure() {
 
 RNG.gatchaRollPromise(5).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).then(function(result) {
   viewGachaResult(result)
-  return gatchaRollPromise(result);
+  return RNG.gatchaRollPromise(result);
 }).catch(function(err) { viewGachaFailure() });
