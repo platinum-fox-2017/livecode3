@@ -42,12 +42,12 @@ class RNG {
   }
   static gatchaRollPromise(times){
     return new Promise(function(resolve,reject){
-      setTimeout(function() {
-        // jalankan sesuatu disini setelah 1 detik
+      
         if(times === 0){
           reject()
         }
         else{
+          
           let arr =[]
           for(let i=0;i<times;i++){
             let roll = RNG.roll()
@@ -58,10 +58,12 @@ class RNG {
             return b-a
           })
           // console.log(sort[0])
+          let time = setTimeout(function(time) {
           resolve(sort[0])
-          
+          }, 1000);
+       
         }
-      }, 1000);
+     
     })
   }
 }
@@ -96,4 +98,33 @@ function viewGachaFailure() {
 // RELEASE 2 PROMISE(S)
 
 // code here...
-
+RNG.gatchaRollPromise(10).then(function(result){
+  viewGachaResult(result)
+}).then(function(result){
+  RNG.gatchaRollPromise(result).then(function(result){
+    viewGachaResult(result)
+  }).then(function(result3){
+    RNG.gatchaRollPromise(result3).then(function(result3){
+      viewGachaResult(result3)
+    }).then(function(result4){
+      RNG.gatchaRollPromise(result4).then(function(result4){
+        viewGachaResult(result4)
+      }).then(function(result4){
+        RNG.gatchaRollPromise(result4).then(function(result4){
+          viewGachaResult(result4)
+        })
+      }).catch(err=>{
+        viewGachaFailure()
+      })
+      .catch(err=>{
+        viewGachaFailure()
+      })
+    }).catch(err=>{
+      viewGachaFailure()
+    })
+  }).catch(err=>{
+    viewGachaFailure()
+  })
+}).catch(err=>{
+  viewGachaFailure()
+})
