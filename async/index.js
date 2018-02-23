@@ -44,9 +44,8 @@ class RNG {
                   maxVal = val;
             }
             setTimeout(function(){resolve(maxVal)}, 1000);
-        }
-
-      })
+        };
+    });
   }
 
 }
@@ -61,7 +60,7 @@ function viewGachaFailure() {
 }
 
 // RELEASE 0 TEST CASES
-
+console.log("\nRelease 0 & 1:");
 RNG.gatchaRoll(5, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
 RNG.gatchaRoll(1, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
 RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
@@ -81,8 +80,10 @@ RNG.gatchaRollPromise(0)
 
 
 // RELEASE 2 PROMISE(S)
+// Using Promise Chaining
 RNG.gatchaRollPromise(5)
   .then(function(result) {
+      console.log("\nRelease 2 (Promise Chaining):");
       viewGachaResult(result);
       return RNG.gatchaRollPromise(5);
   })
@@ -123,4 +124,16 @@ RNG.gatchaRollPromise(5)
       return RNG.gatchaRollPromise(5);
   })
   .catch(function(err) { viewGachaFailure() });
+
+
+  // Using Promise All
+  Promise.all([RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7),RNG.gatchaRollPromise(7)])
+    .then(values =>{
+        console.log("\nRelease 2 (Promise All):");
+        for(let i = 0; i < values.length; i++){
+            viewGachaResult(values[i]);
+        }
+    })
+    .catch(function(err) { viewGachaFailure() });
+
 // code here...
