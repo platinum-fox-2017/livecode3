@@ -45,27 +45,25 @@ class RobotFactory {
     }
 
     static produceRobot(name,number) {
-        let robot1 = new WallE();
+        // let robot1 = new WallE();
         // console.log(robot1);
-
-        let robot2 = new BayMax();
+        // let robot2 = new BayMax();
         // console.log(robot2);
-
-        let robot3 = new AutoBot();
+        // let robot3 = new AutoBot();
         // console.log(robot3);
 
         var arrLot = [];
         if (name == 'wall-e') {
             for (var i = 0; i < number; i++) {
-                arrLot.push(robot1);
+                arrLot.push(WallE);
             }
         } else if (name == 'baymax') {
             for (var i = 0; i < number; i++) {
-                arrLot.push(robot2);
+                arrLot.push(BayMax);
             }
         } else {
             for (var i = 0; i < number; i++) {
-                arrLot.push(robot3);
+                arrLot.push(AutoBot);
             }
         }
         return arrLot;      
@@ -83,7 +81,7 @@ class RobotFactory {
 let wall_e = RobotFactory.produceRobot('wall-e', 6);
 let baymax = RobotFactory.produceRobot('baymax', 5);
 let autobot = RobotFactory.produceRobot('autobot', 3);
-// console.log(wall_e);
+
 
 
 for (var i = 0; i < wall_e.length; i++) {
