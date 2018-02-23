@@ -17,6 +17,34 @@ class RNG {
 
     return result;
   }
+  static gatchaRoll(times, callback){
+    let data
+    if(times === 0){
+      data = 0
+    }
+    else{
+      let arr = []
+      for(let i=0; i<times; i++){
+        arr.push(RNG.roll())
+      }
+      arr.sort()
+      data = arr[arr.length-1]
+    }
+    callback(data)
+  }
+  static gatchaRollPromise(times){
+    let arr = []
+    if(times === 0){
+      return 0
+    }
+    else{
+      for(let i=0; i<times; i++){
+        arr.push(RNG.roll())
+      }
+      arr.sort()
+      return arr[arr.length-1]
+    }
+  }
 }
 
 function viewGachaResult(best) {
@@ -35,13 +63,13 @@ RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
 // RELEASE 1 TEST CASES
 RNG.gatchaRollPromise(5)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+  .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
 RNG.gatchaRollPromise(0)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+  .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
