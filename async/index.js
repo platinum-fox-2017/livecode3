@@ -78,4 +78,45 @@ RNG.gatchaRollPromise(0)
 
 // RELEASE 2 PROMISE(S)
 
-// code here...
+RNG.gatchaRollPromise(10)
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(9)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(8)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(7)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(6)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(5)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(4)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(3)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(2)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(1)
+  })
+  .then(function(result) { 
+    viewGachaResult(result)
+    return RNG.gatchaRollPromise(0)
+  })
+  .catch(function(err) { viewGachaFailure() });
