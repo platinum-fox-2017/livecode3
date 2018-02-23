@@ -3,19 +3,34 @@ class RNG {
     const tiers = [1, 2, 3, 4, 5];
     let num = Math.floor(Math.random() * 100) + 1;
     let result = 'UNKNOWN';
-    if(num > 60) {
+    if (num > 60) {
       result = tiers[0];
-    } else if(num > 40) {
+    } else if (num > 40) {
       result = tiers[1];
-    } else if(num > 20) {
+    } else if (num > 20) {
       result = tiers[2];
-    } else if(num > 5) {
+    } else if (num > 5) {
       result = tiers[3];
     } else {
       result = tiers[4];
     }
 
     return result;
+  }
+
+  static gatchaRoll(times, callback) {
+
+    let hasil = 0
+    if (times <= 0) {
+      hasil = 0
+    }
+    for (let index = 0; index < times; index++) {
+      hasil = RNG.roll()
+    }
+    setTimeout(function () {
+      // jalankan sesuatu disini setelah 1 detik
+      viewGachaResult(hasil)
+    }, 1000)
   }
 }
 
@@ -28,20 +43,21 @@ function viewGachaFailure() {
 }
 
 // RELEASE 0 TEST CASES
-RNG.gatchaRoll(5, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
-RNG.gatchaRoll(1, function(result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
-RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
+// console.log(RNG.gatchaRoll(5))
+RNG.gatchaRoll(5, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
+// RNG.gatchaRoll(1, function (result) { viewGachaResult(result) }); // output log sesuai hasil random terbaik
+// RNG.gatchaRoll(0, function (result) { viewGachaResult(result) }); // output: 0
 
-// RELEASE 1 TEST CASES
-RNG.gatchaRollPromise(5)
-  .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+// // RELEASE 1 TEST CASES
+// RNG.gatchaRollPromise(5)
+//   .then(function (result) { viewGachaResult(result) })
+//   .catch(function (err) { viewGachaFailure() };
 
-// akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
+// // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
-RNG.gatchaRollPromise(0)
-  .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+// RNG.gatchaRollPromise(0)
+//   .then(function (result) { viewGachaResult(result) })
+//   .catch(function (err) { viewGachaFailure() };
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
