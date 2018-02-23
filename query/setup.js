@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('database.db');
+const db = new sqlite3.Database('query/database.db');
 
 db.serialize(function() {
   db.run(`CREATE TABLE IF NOT EXISTS Players (
