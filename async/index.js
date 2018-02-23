@@ -85,7 +85,7 @@ RNG.gatchaRollPromise(5)
 
 RNG.gatchaRollPromise(0)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { });
+  .catch(function(err) { viewGachaFailure()});
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
