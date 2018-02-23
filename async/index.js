@@ -77,7 +77,7 @@ RNG.gatchaRollPromise(5)
 //   .then(function(result) { viewGachaResult(result) })
 //   .catch(function(err) { viewGachaFailure() });
 
-// // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
+// akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
 
 // // RELEASE 2 PROMISE(S)
