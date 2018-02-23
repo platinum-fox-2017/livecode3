@@ -5,25 +5,41 @@ const Baymax = require('./baymax');
 class RobotFactory{
     static produceRobot(name, amount){
         let robotArr = new Array();
+        let callback = new Function();
 
         switch(name){
             case 'wall-e':
-                var robotObj = new Walle();
+                callback = RobotFactory.walle;
                 break;
             case 'baymax':
-                var robotObj = new Baymax();
+                callback = RobotFactory.baymax;
                 break;
             case 'autobot':
-                var robotObj = new Autobot();
+                callback = RobotFactory.autobot;
+                break;
+            default:
+                calback = function(){};
                 break;
         }
 
         for(let i = 0; i < amount; i++){
-            robotArr.push(robotObj);
+            robotArr.push(callback());
         }
-
         return robotArr;
     }
 
+    static walle(){
+        return new Walle();
+    }
+
+    static baymax(){
+        return new Baymax();
+    }
+
+    static autobot(){
+        return new Autobot();
+    }
+
 }
+
 module.exports = RobotFactory;
