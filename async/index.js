@@ -100,31 +100,34 @@ function viewGachaFailure() {
 // code here...
 RNG.gatchaRollPromise(10).then(function(result){
   viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
 }).then(function(result){
-  RNG.gatchaRollPromise(result).then(function(result){
-    viewGachaResult(result)
-  }).then(function(result3){
-    RNG.gatchaRollPromise(result3).then(function(result3){
-      viewGachaResult(result3)
-    }).then(function(result4){
-      RNG.gatchaRollPromise(result4).then(function(result4){
-        viewGachaResult(result4)
-      }).then(function(result4){
-        RNG.gatchaRollPromise(result4).then(function(result4){
-          viewGachaResult(result4)
-        })
-      }).catch(err=>{
-        viewGachaFailure()
-      })
-      .catch(err=>{
-        viewGachaFailure()
-      })
-    }).catch(err=>{
-      viewGachaFailure()
-    })
-  }).catch(err=>{
-    viewGachaFailure()
-  })
-}).catch(err=>{
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).then(function(result){
+  viewGachaResult(result)
+  return RNG.gatchaRollPromise(result)
+}).catch(function(err){
   viewGachaFailure()
 })
