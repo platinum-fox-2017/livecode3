@@ -17,14 +17,50 @@ class RNG {
 
     return result;
   }
+
+  // static here
+  static gatchaRoll(times, callback){
+    if (times === 0) {
+      callback(0);
+    } else {
+      let rolls = [];
+      for (var i = 0; i < times; i++) {
+        rolls.push(RNG.roll());
+      }
+      rolls.sort((a,b)=>{return b-a})
+      callback(rolls[0]);
+    }
+
+  }
+
+  static gatchaRollPromise(times){
+    return new Promise((resolve,reject)=>{
+      if (times === 0) {
+        reject();
+      } else {
+        let rolls = [];
+        for (var i = 0; i < times; i++) {
+          rolls.push(RNG.roll())
+        }
+        rolls.sort((a,b)=>{return b-a})
+        resolve(rolls[0]);
+      }
+    })
+  }
+
 }
 
 function viewGachaResult(best) {
-  console.log(`YOUR BEST GATCHA ROLL RESULT IS ${best}`);
+  setTimeout(function(){
+    console.log(`YOUR BEST GATCHA ROLL RESULT IS ${best}`);
+  }, 1000)
+
 }
 
 function viewGachaFailure() {
-  console.log('YAKIN NGGAK MAU NGE-ROLL?');
+  setTimeout(function(){
+    console.log('YAKIN NGGAK MAU NGE-ROLL?');
+  }, 1000)
 }
 
 // RELEASE 0 TEST CASES
@@ -35,13 +71,13 @@ RNG.gatchaRoll(0, function(result) { viewGachaResult(result) }); // output: 0
 // RELEASE 1 TEST CASES
 RNG.gatchaRollPromise(5)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+  .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YOUR BEST GATCHA ROLL RESULT IS <angka antara 1-5>
 
 RNG.gatchaRollPromise(0)
   .then(function(result) { viewGachaResult(result) })
-  .catch(function(err) { viewGachaFailure() };
+  .catch(function(err) { viewGachaFailure() });
 
 // akan menampilkan di log: YAKIN NGGAK MAU NGE-ROLL?
 
@@ -49,3 +85,14 @@ RNG.gatchaRollPromise(0)
 // RELEASE 2 PROMISE(S)
 
 // code here...
+let promises = []
+for (let i = 0; i < 10; i++) {
+  let num = Math.floor(Math.random() * 10)+1;
+  promises.push(RNG.gatchaRollPromise(num))
+}
+
+Promise.all(promises).then((values)=>{
+  for (var i = 0; i < values.length; i++) {
+    viewGachaResult(values[i]);
+  }
+}).catch( function(err) { viewGachaFailure() } )
